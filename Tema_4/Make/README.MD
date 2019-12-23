@@ -16,15 +16,59 @@ int main()//funcio main, es llança la primera nomes començar el programa
 
 **-He compilat el fitxer fent us del make.**
 
-make hola // que executa cc hola.c -o hola  
+~~~bash
+make hola // que executa cc hola.c -o hola
+~~~  
 
 **-El resultat es el programa** ***hola*** **que s'executa amb** ***./hola*** imprimint per consola *Hola món*
 
-2. ***Exemple de la calculadora (fitxers calc.c, calcula.c i calc.h), amb la funcionalitat del exmeples mes la funcion major()....  
+2. ***Exemple de la calculadora (fitxers calc.c, calcula.c i calc.h), amb la funcionalitat del exmeples mes la funcion major()....***  
 
-* **Implemente el codi en els tres fitxers, compile el fitxer objecte de la llibreria
+* **Implemente el codi en els tres fitxers, compile el fitxer objecte de la llibreria**
 
 gcc -c calc.c -o calc.o
 gcc calc.o calcula.c -o calcula
 
+* **Cree el fitxer MakeFile amb els targets indicats i verifique que funcionen, no tinc molt clar com mostrar el funcionament en la memoria aixi que adjunte el que fa cada target al executarse,i indiquen lo seguent**
+
+~~~bash
+make clean
+rm -rf *.o
+rm calcula
+
+make targz
+rm -rf *.o
+rm calcula
+mkdir -p source
+cp *.c *.h Makefile source
+tar -cvf cacula.tar source
+source/
+source/calcula.c
+source/hola.c
+source/calc.h
+source/Makefile
+source/calc.c
+gzip calcula.tar
+rm -rf calcula.tar
+rm -rf source
+
+sudo make dist
+rm -rf *.o
+rm calcula
+gcc -g -Wall - c calc.c -o calc.o
+gcc -Wall -g calcula.c calc.o -o calcula
+rm -rf ../dist;
+mkdir -p ../dist/usr/bin/calc
+cp calcula ../dist/usr/bin/calc
+
+sudo make install
+rm -rf *.o
+rm calcula
+gcc -g -Wall -c calc.c -o calc.o
+gcc -Wall - g calcula.c calc.o -o calcula
+rm -rf ../dist;
+mkdir -p ../dist/usr/bin/calc
+cp calcula ../dist/usr/bin/calc
+cp -r ../dist/* /
+~~~
 
